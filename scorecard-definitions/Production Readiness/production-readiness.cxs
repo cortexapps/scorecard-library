@@ -1,0 +1,74 @@
+tag: serv-sec-comp
+name: Production Readiness
+description: Ensuring services are ready for production deployment
+draft: false
+notifications:
+  enabled: true
+exemptions:
+  enabled: true
+  autoApprove: false
+rules:
+- title: Zero vulnerabilities in Snyk
+  description: No vulnerabilities discovered through Snyk
+  expression: snyk.issues().length == 0
+  identifier: 07d0f780-8d25-3776-9402-421620149afd
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: MTTA for vulnerabilities is less than 5 mins
+  expression: oncall.analysis(lookback = duration("P1W")).meanSecondsToFirstAck < 300
+  identifier: 6a94628a-fe62-3d3a-9dac-8be742eb4906
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Zero vulnerabilities in GitHub
+  description: GitHub shows zero vulnerabilities in code
+  expression: git.numOfVulnerabilities() == 0
+  identifier: 7b81a846-f9df-334f-a218-ea0045b428d0
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: SonarQube coverage over 90%
+  expression: sonarqube.metric("coverage") >= 90
+  identifier: 8bce5117-2d35-3f68-9381-690386c16f5d
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Zero unresolved Jira Issues
+  expression: jira.numOfIssues() == 0
+  identifier: c25cc212-aaac-3890-bd01-b95d2c20ce86
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: MTTR for Vulnerabilities is less than 1 hour
+  expression: oncall.analysis(lookback = duration("P1W")).meanSecondsToResolve < 3600
+  identifier: cffa3741-ec30-3df3-80e9-3a81dd0bb04a
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Service has a Slack or Teams channel
+  description: This service has a Slack or Teams channel set
+  expression: (slack != null) OR (microsoftTeams != null)
+  identifier: 5d1e7a1f-3c42-3031-8a33-a1f4013b1c5e
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Service has Buildkite pipelines registered
+  expression: buildkite != null
+  identifier: a3c1f6e2-4b3a-3e2d-812c-eb41a02d3f4f
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+filter:
+  kind: GENERIC
+  types:
+    include:
+    - service

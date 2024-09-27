@@ -1,0 +1,87 @@
+tag: code-quality-metrics
+name: Code Quality
+description: Ensuring high standards of code quality and maintainability
+draft: false
+notifications:
+  enabled: true
+exemptions:
+  enabled: true
+  autoApprove: false
+rules:
+- title: High Test Coverage (Branch)
+  description: Branch coverage should be at least 75%
+  expression: jq(custom("test.coverage"), ".branch") > 75
+  identifier: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: High Test Coverage (Line)
+  description: Line coverage should be at least 85%
+  expression: jq(custom("test.coverage"), ".line") > 85
+  identifier: da4fd7a6-67f1-4562-b445-1357bd9e64c0
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Low Code Duplication
+  description: SonarQube duplicated lines density is less than 10%
+  expression: sonarqube.metric("duplicated_lines_density") < 10
+  identifier: 7c5fbfd7-6d04-4a81-9852-32c48778a789
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: High Maintainability Rating
+  description: SonarQube maintainability rating (SQALE rating) is at least A
+  expression: sonarqube.metric("sqale_rating") >= 0.95
+  identifier: e209e5bd-427b-474a-b82a-30605591e013
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: High Code Coverage
+  description: SonarQube or custom coverage is at least 90%
+  expression: sonarqube.metric("coverage") >= 90
+  identifier: 1a2b3c4d-5e6f-437a-b901-2d3e4f5a6b7c
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: No Critical or High severity vulnerabilities
+  description: Ensure no critical or high severity vulnerabilities exist in the codebase
+  expression: git.numOfVulnerabilities(severity=["CRITICAL", "HIGH"]) == 0
+  identifier: f3b2c1d0-5a4e-4831-9b0a-2c3e4f5a6b7d
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Low Code Complexity
+  description: Ensure that code complexity metrics (e.g., cyclomatic complexity) are within acceptable limits
+  expression: sonarqube.metric("complexity") < 4
+  identifier: 2e3d4f5g-6h7i-445b-8a90-1c2d3e4f5a6e
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Adherence to Coding Standards
+  description: Ensure the codebase adheres to defined coding standards and best practices
+  expression: /* Replace with your specific coding standards enforcement tool/metric */ 
+  identifier: 9j8k7l6m-5n0p-412a-8b3c-0d1e2f3g4h5i
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+- title: Minimal Open Pull Requests
+  description: Limit the number of open pull requests to ensure efficient code review and integration
+  expression: git.pullRequests(status = "OPEN").length <= 5 
+  identifier: a1b2c3d4-5e6f-4g7h-8i9j-0k1l2m3n4o5p
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+filter:
+  kind: GENERIC
+  types:
+    include:
+    - service
