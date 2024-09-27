@@ -21,7 +21,7 @@ cortex scorecards create -f [scorecard file]
 For instance, to install the Incident Preparedness Scorecard, you could download the file directly (or of course clone the repo) and issue the following command:
 
 ```bash
-cortex scorecards create -f incidentt-preparedness.cxs
+cortex scorecards create -f incident-preparedness.cxs
 ```
 
 The CLI will return an error if there's a problem, or a confirmation output in JSON. Note that each of the rules imported will be reflected in the "rules" array in the output, so be sure to validate that every rule was imported there:
