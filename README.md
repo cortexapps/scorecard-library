@@ -21,13 +21,13 @@ cortex scorecards create -f [scorecard file]
 For instance, to install the Incident Preparedness Scorecard, you could download the file directly (or of course clone the repo) and issue the following command:
 
 ```bash
-cortex scorecards create -f incident-preparedness.cxs
+cortex scorecards create -f incident-preparedness.yaml
 ```
 
 The CLI will return an error if there's a problem, or a confirmation output in JSON. Note that each of the rules imported will be reflected in the "rules" array in the output, so be sure to validate that every rule was imported there:
 
 ```text
-# cortex scorecards create -f vulnerability-management.cxs
+# cortex scorecards create -f vulnerability-management.yaml
 
 {"scorecard":{"name":"Vulnerability Management","tag":"vulnerability-management-metrics","description":"Ensuring proactive identification and remediation of vulnerabilities","isDraft":false,"notifications":{"enabled":true},"exemptions":{"enabled":true,"autoApprove":false},"evaluation":{"window":4},"rules":[{"expression":"git.numOfVulnerabilities(severity=[\"CRITICAL\"]) == 0","weight":1,"description":"Ensure no critical vulnerabilities exist in the codebase or dependencies","title":"No Critical Vulnerabilities","failureMessage":null,"levelName":null,"effectiveFrom":null,"filter":{"types":null,"groups":null,"query":null},"identifier":"1a2b3c4d-5e6f-437a-b901-2d3e4f5a6b7c"}],"levels":null,"lastUpdated":"2024-09-27T18:51:21.85938","filter":{"types":{"include":["service"],"exclude":[]},"groups":null,"query":null}}}
 ```
