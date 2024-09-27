@@ -10,7 +10,6 @@ rules:
 - title: On-Call Rotations Defined
   description: Ensure on-call rotations are defined for critical services
   expression: oncall != null 
-  identifier: 8f7e4a8d-2b3c-4d1f-9a2e-30c56d7f8e91
   weight: 1
   filter:
     kind: GENERIC
@@ -18,7 +17,6 @@ rules:
 - title: Runbooks Available
   description: Critical services should have up-to-date runbooks for common incident scenarios
   expression: links("runbook").length > 0 
-  identifier: 3a2c1f0d-5e4b-436a-8b7d-90f1e2d3c4a5
   weight: 1
   filter:
     kind: GENERIC
@@ -26,7 +24,6 @@ rules:
 - title: Post-Incident Reviews Conducted
   description: Ensure post-incident reviews are conducted for major incidents to identify areas for improvement
   expression: /* Replace with your specific post-incident review tracking metric */
-  identifier: 6b5d4c3a-2e1f-408g-9h0i-1j2k3l4m5n6o
   weight: 1
   filter:
     kind: GENERIC
@@ -34,7 +31,6 @@ rules:
 - title: Service Level Objectives (SLOs) Defined
   description: Service should have SLO's
   expression: custom("slos") != null
-  identifier: 7d6e5f4b-3g2h-41i0-8j1k-9l0m1n2p3q4r
   weight: 1
   filter:
     kind: GENERIC
@@ -42,7 +38,6 @@ rules:
 - title: Recent Chaos Engineering Experiments
   description: Ensure recent chaos engineering experiments have been conducted to test system resilience
   expression: /* Replace with your chaos engineering experiment tracking metric */
-  identifier: 2d1c0f3e-5a4b-436g-8h7i-90j1k2l3m4n5
   weight: 1
   filter:
     kind: GENERIC
@@ -50,7 +45,6 @@ rules:
 - title: Up-to-date Disaster Recovery Plan
   description: Ensure a disaster recovery plan exists and is regularly reviewed and updated
   expression: /* Replace with your disaster recovery plan tracking metric */
-  identifier: 5f4e3d2c-1a0b-487g-9h6i-0j1k2l3m4n5p
   weight: 1
   filter:
     kind: GENERIC
@@ -58,7 +52,6 @@ rules:
 - title: Incident Response Training
   description: Ensure team members have undergone incident response training
   expression: /* Replace with your incident response training tracking metric */
-  identifier: 8g7h6f5e-4d3c-412a-8b0e-9f0g1h2i3j4k
   weight: 1
   filter:
     kind: GENERIC

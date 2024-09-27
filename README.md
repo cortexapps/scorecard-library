@@ -12,6 +12,20 @@ In order to import these scorecards, you'll first need to have the [Cortex CLI](
 
 ## Importing Scorecards into Cortex
 
+Note that **some scorecards will require preparation**, as they may have generic placeholders for the ```expression``` tag, such as in incident-preparedness.yaml:
+
+```yaml
+- title: Post-Incident Reviews Conducted
+  description: Ensure post-incident reviews are conducted for major incidents to identify areas for improvement
+  expression: /* Replace with your specific post-incident review tracking metric */
+  weight: 1
+  filter:
+    kind: GENERIC
+    types: {}
+```
+
+You will receive a warning when opening the Scorecard in the Cortex UI if these fields are not updated or removed.  
+
 Once you have the CLI installed, you can run the following command to install any of the Scorecards in the [scorecard-definitions](https://github.com/cortexapps/scorecard-library/tree/master/scorecard-definitions) folder of this library:
 
 ```bash

@@ -11,7 +11,6 @@ rules:
 - title: Project Identifier Defined
   description: This is the unique identifier of the project
   expression: custom("project_id") != null
-  identifier: 8f7e4a8d-2b3c-4d1f-9a2e-30c56d7f8e91
   weight: 1
   filter:
     kind: GENERIC
@@ -19,7 +18,6 @@ rules:
 - title: SLOs Defined
   description: Service should have SLO's
   expression: custom("slos") != null
-  identifier: 3a2c1f0d-5e4b-436a-8b7d-90f1e2d3c4a5
   weight: 1
   filter:
     kind: GENERIC
@@ -27,15 +25,6 @@ rules:
 - title: Test Coverage Reported
   description: test coverage is reported
   expression: custom("test.coverage") != null
-  identifier: 6b5d4c3a-2e1f-408g-9h0i-1j2k3l4m5n6o
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
-- title: Domain Set as Parent
-  description: This service has a domain set as a parent
-  expression: entity.parents().any(x => x.type == 'domain')
-  identifier: 7d6e5f4b-3g2h-41i0-8j1k-9l0m1n2p3q4r
   weight: 1
   filter:
     kind: GENERIC
@@ -43,7 +32,6 @@ rules:
 - title: Git Repository Exists
   description: This service has a Github repo for source control
   expression: git != null
-  identifier: 2d1c0f3e-5a4b-436g-8h7i-90j1k2l3m4n5
   weight: 1
   filter:
     kind: GENERIC
@@ -51,7 +39,6 @@ rules:
 - title: Default Branch is Master
   description: Default branch is master
   expression: git.defaultBranch().matches("master")
-  identifier: 5f4e3d2c-1a0b-487g-9h6i-0j1k2l3m4n5p
   weight: 1
   filter:
     kind: GENERIC
@@ -59,7 +46,6 @@ rules:
 - title: README.md File Exists
   description: This service has a `README.md` file.
   expression: git.fileExists("README.md")
-  identifier: 1p2q3r4s-5t6u-445v-8w9x-0y1z2a3b4c5
   weight: 1
   filter:
     kind: GENERIC
@@ -67,7 +53,6 @@ rules:
 - title: Docs Folder Exists
   description: docs folder exists
   expression: git.fileExists("docs")
-  identifier: 2q3r4s5t-6u7v-456w-8x9y-0z1a2b3c4d5
   weight: 1
   filter:
     kind: GENERIC
@@ -75,7 +60,6 @@ rules:
 - title: Dynatrace Dashboard Linked
   description: This service has a dynatrace dashboard linked to it.
   expression: links("dynatrace").anyMatch("https://.*.live.dynatrace.com/.*")
-  identifier: 5t6u7v8w-9x0y-489z-0a1b-2c3d4e5f6g7
   weight: 1
   filter:
     kind: GENERIC
@@ -83,7 +67,6 @@ rules:
 - title: Semantic Versioning for App Version
   description: App version running in production must conform to the semantic standard
   expression: semver(jq(custom("runtime_info"), ".app_version")).isStable()
-  identifier: 6u7v8w9x-0y1z-490a-1b2c-3d4e5f6g7h8
   weight: 1
   filter:
     kind: GENERIC
@@ -91,7 +74,6 @@ rules:
 - title: Slack Channel Connected
   description: This service is connected to a Slack channel.
   expression: slack != null
-  identifier: 7v8w9x0y-1z2a-401b-2c3d-4e5f6g7h8i9
   weight: 1
   filter:
     kind: GENERIC
@@ -99,7 +81,6 @@ rules:
 - title: Data Received from Datadog
   description: Data is being received from the Datadog integration for either SLOs or Monitors.
   expression: datadog.monitors().length > 0
-  identifier: 8w9x0y1z-2a3b-412c-3d4e-5f6g7h8i9j0
   weight: 1
   filter:
     kind: GENERIC
@@ -107,7 +88,6 @@ rules:
 - title: SonarQube Project Set
   description: This entity has a SonarQube project set
   expression: sonarqube != null
-  identifier: 9x0y1z2a-3b4c-423d-4e5f-6g7h8i9j0k1
   weight: 1
   filter:
     kind: GENERIC
