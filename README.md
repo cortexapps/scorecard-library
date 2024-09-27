@@ -44,6 +44,6 @@ If you'd like to share a scorecard, fork this repository and create a pull reque
 
 - Clear any company-specific or otherwise identifiable information from all fields including Descriptions and comments
 - The filename should match the 'tag' field in the cxs file, and file should be kept in a folder matching the 'name' field. You can provide additional documentation in this folder as needed
-- It's ok to use comments in place of custom data queries, indicating that user's should replace the field with their own corresponding CQL rule
+- It's ok to use comments in place of custom CQL rules, indicating that users should replace the field with their own corresponding CQL rule
 
 We really appreciate your help growing this library!
