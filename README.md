@@ -4,7 +4,7 @@ A multi-purpose collection of scorecards that can be imported into your Cortex i
 
 ## General Info
 
-Scorecards are kept in a yaml-adjacent format with a .cxs prefix. This is the same format used when Scorecards are exported directly from the Cortex UI.
+Scorecards are kept in a YAML format with a .yaml suffix. This is the same format used when Scorecards are exported directly from the Cortex UI.
 
 ## Getting Started
 
@@ -43,7 +43,7 @@ You can edit these Scorecards as normal once they have been imported, to further
 If you'd like to share a scorecard, fork this repository and create a pull request. Please keep in mind the following guidelines:
 
 - Clear any company-specific or otherwise identifiable information from all fields including Descriptions and comments
-- The filename should match the 'tag' field in the cxs file, and file should be kept in a folder matching the 'name' field. You can provide additional documentation in this folder as needed
+- The filename should match the 'tag' field in the YAML file, and file should be kept in a folder matching the 'name' field. Use the full 'yaml' suffix in the filename. You can provide additional documentation in this folder as needed
 - It's ok to use comments in place of custom CQL rules, indicating that users should replace the field with their own corresponding CQL rule
 
 We really appreciate your help growing this library!
