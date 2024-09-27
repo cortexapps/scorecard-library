@@ -12,7 +12,7 @@ In order to import these scorecards, you'll first need to have the [Cortex CLI](
 
 ## Importing Scorecards into Cortex
 
-Once you have the CLI installed, you can run the following command to install any of the Scorecards in this repo:
+Once you have the CLI installed, you can run the following command to install any of the Scorecards in the [scorecard-definitions](https://github.com/cortexapps/scorecard-library/tree/master/scorecard-definitions) folder of this library:
 
 ```bash
 cortex scorecards create -f [scorecard file]
