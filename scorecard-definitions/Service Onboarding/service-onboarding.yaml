@@ -4,94 +4,108 @@ description: Ensuring services are correctly onboarded and meet baseline require
 draft: false
 notifications:
   enabled: true
+  scoreDropNotificationsEnabled: false
 exemptions:
   enabled: true
   autoApprove: false
+ladder:
+  name: Default Ladder
+  levels:
+  - name: Bronze
+    rank: 1
+    color: '#c38b5f'
+  - name: Silver
+    rank: 2
+    color: '#8c9298'
+  - name: Gold
+    rank: 3
+    color: '#cda400'
 rules:
-- title: Project Identifier Defined
-  description: This is the unique identifier of the project
-  expression: custom("project_id") != null
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
-- title: SLOs Defined
-  description: Service should have SLO's
-  expression: custom("slos") != null
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
-- title: Test Coverage Reported
-  description: test coverage is reported
-  expression: custom("test.coverage") != null
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
-- title: Git Repository Exists
-  description: This service has a Github repo for source control
-  expression: git != null
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
-- title: Default Branch is Master
-  description: Default branch is master
-  expression: git.defaultBranch().matches("master")
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
 - title: README.md File Exists
   description: This service has a `README.md` file.
   expression: git.fileExists("README.md")
   weight: 1
+  level: Bronze
   filter:
     kind: GENERIC
-    types: {}
+- title: Git Repository Exists
+  description: This service has a Github repo for source control
+  expression: git != null
+  weight: 1
+  level: Bronze
+  filter:
+    kind: GENERIC
 - title: Docs Folder Exists
   description: docs folder exists
   expression: git.fileExists("docs")
   weight: 1
+  level: Bronze
   filter:
     kind: GENERIC
-    types: {}
+- title: SLOs Defined
+  description: Service should have SLO's
+  expression: custom("slos") != null
+  weight: 1
+  level: Gold
+  filter:
+    kind: GENERIC
+- title: Default Branch is Master
+  description: Default branch is master
+  expression: git.defaultBranch().matches("master")
+  weight: 1
+  level: Silver
+  filter:
+    kind: GENERIC
 - title: Dynatrace Dashboard Linked
   description: This service has a dynatrace dashboard linked to it.
   expression: links("dynatrace").anyMatch("https://.*.live.dynatrace.com/.*")
   weight: 1
+  level: Silver
   filter:
     kind: GENERIC
-    types: {}
+- title: Test Coverage Reported
+  description: test coverage is reported
+  expression: custom("test.coverage") != null
+  weight: 1
+  level: Gold
+  filter:
+    kind: GENERIC
 - title: Semantic Versioning for App Version
   description: App version running in production must conform to the semantic standard
-  expression: semver(jq(custom("runtime_info"), ".app_version")).isStable()
+  expression: "semver(jq(custom(\"runtime_info\"), \".app_version\")).isStable()"
   weight: 1
+  level: Gold
   filter:
     kind: GENERIC
-    types: {}
 - title: Slack Channel Connected
   description: This service is connected to a Slack channel.
   expression: slack != null
   weight: 1
+  level: Silver
   filter:
     kind: GENERIC
-    types: {}
+- title: Project Identifier Defined
+  description: This is the unique identifier of the project
+  expression: custom("project_id") != null
+  weight: 1
+  level: Bronze
+  filter:
+    kind: GENERIC
 - title: Data Received from Datadog
-  description: Data is being received from the Datadog integration for either SLOs or Monitors.
+  description: Data is being received from the Datadog integration for either SLOs
+    or Monitors.
   expression: datadog.monitors().length > 0
   weight: 1
+  level: Gold
   filter:
     kind: GENERIC
-    types: {}
 - title: SonarQube Project Set
   description: This entity has a SonarQube project set
   expression: sonarqube != null
   weight: 1
+  level: Silver
   filter:
     kind: GENERIC
-    types: {}
 filter:
   kind: GENERIC
   types:
