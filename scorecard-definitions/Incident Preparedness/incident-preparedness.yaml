@@ -4,58 +4,79 @@ description: Ensuring teams are well-prepared to handle incidents effectively
 draft: false
 notifications:
   enabled: true
+  scoreDropNotificationsEnabled: false
 exemptions:
   enabled: true
+  autoApprove: false
+ladder:
+  name: Default Ladder
+  levels:
+  - name: Bronze
+    rank: 1
+    color: '#c38b5f'
+  - name: Silver
+    rank: 2
+    color: '#8c9298'
+  - name: Gold
+    rank: 3
+    color: '#cda400'
+  - name: Platinum
+    rank: 4
+    color: '#caeaf2'
 rules:
-- title: On-Call Rotations Defined
-  description: Ensure on-call rotations are defined for critical services
-  expression: oncall != null 
+- title: Recent Chaos Engineering Experiments
+  description: Ensure recent chaos engineering experiments have been conducted to
+    test system resilience
+  expression: /* Replace with your chaos engineering experiment tracking metric */
   weight: 1
+  level: Platinum
   filter:
     kind: GENERIC
-    types: {}
 - title: Runbooks Available
-  description: Critical services should have up-to-date runbooks for common incident scenarios
-  expression: links("runbook").length > 0 
+  description: Critical services should have up-to-date runbooks for common incident
+    scenarios
+  expression: links("runbook").length > 0
   weight: 1
+  level: Bronze
   filter:
     kind: GENERIC
-    types: {}
+- title: Up-to-date Disaster Recovery Plan
+  description: Ensure a disaster recovery plan exists and is regularly reviewed and
+    updated
+  expression: /* Replace with your disaster recovery plan tracking metric */
+  weight: 1
+  level: Gold
+  filter:
+    kind: GENERIC
 - title: Post-Incident Reviews Conducted
-  description: Ensure post-incident reviews are conducted for major incidents to identify areas for improvement
+  description: Ensure post-incident reviews are conducted for major incidents to identify
+    areas for improvement
   expression: /* Replace with your specific post-incident review tracking metric */
   weight: 1
+  level: Gold
   filter:
     kind: GENERIC
-    types: {}
 - title: Service Level Objectives (SLOs) Defined
   description: Service should have SLO's
   expression: custom("slos") != null
   weight: 1
+  level: Silver
   filter:
     kind: GENERIC
-    types: {}
-- title: Recent Chaos Engineering Experiments
-  description: Ensure recent chaos engineering experiments have been conducted to test system resilience
-  expression: /* Replace with your chaos engineering experiment tracking metric */
+- title: On-Call Rotations Defined
+  description: Ensure on-call rotations are defined for critical services
+  expression: oncall != null
   weight: 1
+  level: Silver
   filter:
     kind: GENERIC
-    types: {}
-- title: Up-to-date Disaster Recovery Plan
-  description: Ensure a disaster recovery plan exists and is regularly reviewed and updated
-  expression: /* Replace with your disaster recovery plan tracking metric */
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
 - title: Incident Response Training
   description: Ensure team members have undergone incident response training
   expression: /* Replace with your incident response training tracking metric */
   weight: 1
+  level: Gold
   filter:
     kind: GENERIC
-    types: {}
 filter:
   kind: GENERIC
   types:
