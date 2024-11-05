@@ -13,13 +13,13 @@ ladder:
   levels:
   - name: Bronze
     rank: 1
-    color: '#050505'
+    color: '#c38b5f'
   - name: Silver
     rank: 2
-    color: '#8f8f8f'
+    color: '#8c9298'
   - name: Gold
     rank: 3
-    color: '#dbac00'
+    color: '#cda400'
 rules:
 - title: High Code Coverage
   description: SonarQube or custom coverage is at least 90%
