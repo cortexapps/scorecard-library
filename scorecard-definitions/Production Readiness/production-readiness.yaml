@@ -53,12 +53,6 @@ rules:
   filter:
     kind: GENERIC
     types: {}
-- title: Service has Buildkite pipelines registered
-  expression: buildkite != null
-  weight: 1
-  filter:
-    kind: GENERIC
-    types: {}
 filter:
   kind: GENERIC
   types:
